@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diplomado de Ultrasonido — Situación Actual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --G:#139861;--G10:#e6f5ee;--G80:#0b5e3b;
+  --GR:#858388;--GR10:#f2f1f3;
+  --Y:#EFB337;--Y10:#fdf3dc;--Y80:#7a5a00;
+  --RED:#c0392b;--RED10:#fdecea;
+  --BL:#2563eb;--BL10:#eff6ff;--BL80:#1e40af;
+  --bg:#f5f6fa;--card:#ffffff;--brd:#e4e4e8;
+  --txt:#111827;--muted:#6b7280;
+  --PU:#7c3aed;--PU10:#f5f3ff;--PU80:#4c1d95;
+  --TE:#0891b2;--TE10:#ecfeff;--TE80:#164e63;
+  --OR:#ea580c;--OR10:#fff7ed;--OR80:#7c2d12;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--txt);min-height:100vh;padding:0;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+
+/* HEADER */
+.hdr{background:#0c1a10;border-radius:14px;padding:1.6rem 2rem;margin-bottom:1.25rem;}
+.hdr-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.hdr-left{display:flex;align-items:center;gap:14px;}
+.hdr-icon{width:50px;height:50px;border-radius:12px;background:#1a3325;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hdr-icon svg{width:26px;height:26px;stroke:#5de0a8;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+.hdr-title{font-size:18px;font-weight:600;color:#fff;line-height:1.25;}
+.hdr-title span{color:#5de0a8;}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;margin-top:4px;}
+.hdr-badges{display:flex;gap:7px;flex-wrap:wrap;}
+.badge{font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.badge svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.bg{background:rgba(19,152,97,0.18);color:#5de0a8;border:0.5px solid rgba(19,152,97,0.35);}
+.by{background:rgba(239,179,55,0.18);color:#f7c95e;border:0.5px solid rgba(239,179,55,0.35);}
+.bgr{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);border:0.5px solid rgba(255,255,255,0.15);}
+.bbl{background:rgba(37,99,235,0.18);color:#93c5fd;border:0.5px solid rgba(37,99,235,0.35);}
+
+/* SECTION LABEL */
+.section-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin:0 0 9px;display:flex;align-items:center;gap:6px;}
+.section-label svg{width:15px;height:15px;stroke:var(--G);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* KPI GRID */
+.kpi-grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:1.25rem;}
+.kpi-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:0.75rem;}
+.kpi-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:1.25rem;}
+.kpi{background:var(--card);border:0.5px solid var(--brd);border-radius:14px;padding:1rem 1.1rem;}
+.kpi-top{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.ki{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ki svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+.ki-g{background:var(--G10);color:var(--G);}
+.ki-y{background:var(--Y10);color:var(--Y);}
+.ki-gr{background:var(--GR10);color:var(--GR);}
+.ki-bl{background:var(--BL10);color:var(--BL);}
+.ki-rd{background:var(--RED10);color:var(--RED);}
+.kpi-lbl{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;line-height:1.35;}
+.kpi-val-big{font-size:32px;font-weight:600;letter-spacing:-0.04em;line-height:1;margin-top:2px;}
+.kv-g{color:var(--G);}
+.kv-gr{color:var(--GR);}
+.kv-y{color:var(--Y);}
+.kv-bl{color:var(--BL);}
+.kv-rd{color:var(--RED);}
+.kpi-sub{font-size:11px;color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace;}
+
+.ki-pu{background:var(--PU10);color:var(--PU);}
+.ki-te{background:var(--TE10);color:var(--TE);}
+.ki-or{background:var(--OR10);color:var(--OR);}
+.kv-pu{color:var(--PU);}
+.kv-te{color:var(--TE);}
+.kv-or{color:var(--OR);}
+.kpi-val-med{font-size:24px;font-weight:600;letter-spacing:-0.03em;line-height:1;margin-top:2px;font-family:'DM Mono',monospace;}
+
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-bottom:1.25rem;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:1.25rem;}
+
+/* CARDS */
+.card{background:var(--card);border:0.5px solid var(--brd);border-radius:14px;padding:1.1rem;}
+.card-title{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.card-title svg{width:16px;height:16px;stroke:var(--G);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* STAT ROWS */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:0.5px solid var(--brd);}
+.stat-row:last-child{border-bottom:none;padding-bottom:0;}
+.stat-lbl{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.stat-lbl svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.stat-val{font-size:14px;font-weight:600;font-family:'DM Mono',monospace;}
+
+/* SEDE LIST */
+.sede-list{display:flex;flex-direction:column;gap:7px;}
+.sede-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;border:0.5px solid var(--brd);background:#fafafa;}
+.sede-num{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;font-family:'DM Mono',monospace;flex-shrink:0;}
+.sn-g{background:var(--G10);color:var(--G80);}
+.sn-y{background:var(--Y10);color:var(--Y80);}
+.sede-name{font-size:12px;color:var(--txt);font-weight:500;flex:1;}
+.sede-tag{font-size:10px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:10px;}
+.st-conf{background:var(--G10);color:var(--G80);}
+.st-pend{background:var(--Y10);color:var(--Y80);}
+
+/* QUARTER CARD */
+.q-card{background:var(--card);border:0.5px solid var(--brd);border-radius:14px;padding:1.1rem;position:relative;overflow:hidden;}
+.q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.q-card-q1::before{background:var(--G);}
+.q-card-q2::before{background:var(--Y);}
+.q-card-proj::before{background:var(--BL);}
+.q-label{font-size:10px;font-weight:600;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.ql-g{color:var(--G);}
+.ql-y{color:var(--Y80);}
+.ql-bl{color:var(--BL);}
+.q-stat{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:0.5px solid var(--brd);}
+.q-stat:last-child{border-bottom:none;padding-bottom:0;}
+.q-stat-lbl{font-size:11px;color:var(--muted);}
+.q-stat-val{font-size:13px;font-weight:600;font-family:'DM Mono',monospace;}
+.pill{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:20px;}
+.pg{background:var(--G10);color:var(--G80);}
+.py{background:var(--Y10);color:var(--Y80);}
+.pb{background:var(--BL10);color:var(--BL80);}
+.pr{background:var(--RED10);color:var(--RED);}
+
+/* PROYECCION 2026 */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.proj-item{display:flex;flex-direction:column;gap:3px;}
+.proj-item-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;font-weight:500;}
+.proj-item-val{font-size:22px;font-weight:600;color:var(--BL);letter-spacing:-0.03em;line-height:1;}
+.proj-item-sub{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-inner">
+      <div class="hdr-left">
+        <div class="hdr-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div>
+          <div class="hdr-title">Diplomado de <span>Ultrasonido</span> — Situación Actual</div>
+          <div class="hdr-sub">Resultados Q1 · Proyección Q2 · Proyección 2026</div>
+        </div>
+      </div>
+      <div class="hdr-badges">
+        <span class="badge bg">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+           médicos activos
+        </span>
+        <span class="badge by">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Q1 cerrado · Q2 en curso
+        </span>
+        <span class="badge bbl">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Proyección 2026
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs SITUACIÓN ACTUAL -->
+
+  <div class="section-label">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Situación actual
+  </div>
+  <div class="kpi-grid-4" style="margin-bottom:0.75rem;">
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-g"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="kpi-lbl">Médicos en<br>entrenamiento</div>
+      </div>
+      <div class="kpi-val-big kv-g">107</div>
+      <div class="kpi-sub">activos</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-gr"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="kpi-lbl">Grupos<br>activos</div>
+      </div>
+      <div class="kpi-val-big kv-gr">9</div>
+      <div class="kpi-sub">en operación</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-y"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="kpi-lbl">Grupos en<br>reclutamiento</div>
+      </div>
+      <div class="kpi-val-big kv-y">5</div>
+      <div class="kpi-sub">en proceso</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-bl"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="kpi-lbl">Profesores<br>activos</div>
+      </div>
+      <div class="kpi-val-big kv-bl">7</div>
+      <div class="kpi-sub">confirmados</div>
+    </div>
+  </div>
+  <div class="kpi-grid-4" style="margin-bottom:1.25rem;">
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-rd"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="kpi-lbl">Profesores en<br>reclutamiento</div>
+      </div>
+      <div class="kpi-val-big kv-rd">2</div>
+      <div class="kpi-sub">en proceso</div>
+    </div>
+    <!-- Calidad -->
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-pu">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="kpi-lbl">Calidad</div>
+      </div>
+      <div class="kpi-val-big kv-pu">92<span style="font-size:18px;font-weight:500;opacity:.7;">.43</span></div>
+      <div class="kpi-sub">puntuación promedio</div>
+    </div>
+    <!-- TAP -->
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-te">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="kpi-lbl">TAP<br><span style="text-transform:none;font-size:10px;">T. atención paciente</span></div>
+      </div>
+      <div class="kpi-val-med kv-te">0:12:51</div>
+      <div class="kpi-sub">tiempo promedio</div>
+    </div>
+    <!-- Eficiencia -->
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="ki ki-or">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div class="kpi-lbl">Eficiencia</div>
+      </div>
+      <div class="kpi-val-big kv-or">39<span style="font-size:18px;font-weight:500;opacity:.7;">.33%</span></div>
+      <div class="kpi-sub">rendimiento actual</div>
+    </div>
+  </div>
+
+  <!-- SEDES + Q1 + Q2 -->
+  <div class="section-label">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    Nuevas sedes · Resultados Q1 · Proyección Q2 · Proyección 2026
+  </div>
+  <div class="two-col">
+
+    <!-- IZQUIERDA: Sedes + proyección 2026 apiladas -->
+    <div style="display:flex;flex-direction:column;gap:11px;">
+
+      <div class="card">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Nuevas sedes del diplomado
+        </div>
+        <div class="sede-list">
+          <div class="sede-item">
+            <div class="sede-num sn-g">1</div>
+            <div class="sede-name">Monterrey</div>
+            <span class="sede-tag st-conf">Confirmada</span>
+          </div>
+          <div class="sede-item">
+            <div class="sede-num sn-g">2</div>
+            <div class="sede-name">Coyoacán División del Norte</div>
+            <span class="sede-tag st-conf">Confirmada</span>
+          </div>
+          <div class="sede-item">
+            <div class="sede-num sn-g">3</div>
+            <div class="sede-name">Tijuana</div>
+            <span class="sede-tag st-conf">Confirmada</span>
+          </div>
+          <div class="sede-item">
+            <div class="sede-num sn-y">4</div>
+            <div class="sede-name">Híbrido</div>
+            <span class="sede-tag st-pend">En proceso</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECCIÓN 2026 -->
+      <div class="q-card q-card-proj">
+        <div class="q-label ql-bl">
+          <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Proyección 2026
+        </div>
+        <div class="proj-grid">
+          <div class="proj-item">
+            <div class="proj-item-lbl">Egresados</div>
+            <div class="proj-item-val">124</div>
+            <div class="proj-item-sub">médicos esperados</div>
+          </div>
+          <div class="proj-item">
+            <div class="proj-item-lbl">Apertura de grupos</div>
+            <div class="proj-item-val">26</div>
+            <div class="proj-item-sub">grupos proyectados</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DERECHA: Q1 + Q2 apiladas -->
+    <div style="display:flex;flex-direction:column;gap:11px;">
+
+      <div class="q-card q-card-q1">
+        <div class="q-label ql-g">
+          <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="20 6 9 17 4 12"/></svg>
+          Resultados Q1 — cerrado
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">Egresados</span>
+          <span class="q-stat-val">28 <span style="font-size:11px;color:var(--muted);font-weight:400;">médicos</span></span>
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">Grupos egresados</span>
+          <span class="q-stat-val">4 <span style="font-size:11px;color:var(--muted);font-weight:400;">grupos</span></span>
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">Generaciones</span>
+          <span class="q-stat-val">86 – 89</span>
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">% Bajas</span>
+          <span class="q-stat-val"><span class="pill pr">37.7%</span></span>
+        </div>
+      </div>
+
+      <div class="q-card q-card-q2">
+        <div class="q-label ql-y">
+          <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Proyección Q2 — en curso
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">Egresados esperados</span>
+          <span class="q-stat-val">49 <span style="font-size:11px;color:var(--muted);font-weight:400;">médicos</span></span>
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">Grupos a egresar</span>
+          <span class="q-stat-val">5 <span style="font-size:11px;color:var(--muted);font-weight:400;">grupos</span></span>
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">Generaciones</span>
+          <span class="q-stat-val">90 – 94</span>
+        </div>
+        <div class="q-stat">
+          <span class="q-stat-lbl">% Bajas proyectadas</span>
+          <span class="q-stat-val"><span class="pill py">30.0%</span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
